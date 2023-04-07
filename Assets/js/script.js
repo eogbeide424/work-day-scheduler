@@ -1,12 +1,31 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-// var savBtn= $('#saveBtn');
-// var textArea = $('.description');
-// var hour = $('hour- 9');
+var savBtn= $('#hour-9').siblings().children('[aria-label="save"]');
 
-$(function () {
-//   localStorage.setItem()
+var textArea = $('#hour-9').siblings().children('description');
+var hour = $('#hour- 9');
+
+console.log(savBtn);
+console.log(textArea);
+
+savBtn.on('click',function saveBtnHandler() {
+  var timeBlock= $(this).closest('.time-block');
+  // var userInput= timeBlock.find('.description');
+  var whatHour= timeBlock.attr('id');
+  var text = $(('textArea').html);
+  var data= {
+    hourId: whatHour,
+    text : text,};
+    var dataString = JSON.stringify(data,text);
+    console.log(dataString);
+    console.log(text);
+
+
+  
+  localStorage.setItem(whatHour + "text",dataString);
+});
+  
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
@@ -25,4 +44,3 @@ $(function () {
   // attribute of each time-block be used to do this?
   //
   // TODO: Add code to display the current date in the header of the page.
-});
