@@ -34,8 +34,8 @@ savBtn.on('click',function saveBtnHandler() {
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
 
-  var localizedFormat = require('dayjs/plugin/localizedFormat')
-dayjs.extend(localizedFormat);
+  
+dayjs().format('L LT');
  
 var time = dayjs('2023-04-06').format();
 $()
