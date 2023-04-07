@@ -3,9 +3,10 @@
 // in the html.
 var savBtn= $('#hour-9').siblings().children('[aria-label="save"]');
 
-var textArea = $('#hour-9').siblings().children('description');
+var textArea = $('#hour-9').siblings().children('.description');
 var hour = $('#hour- 9');
 
+var today =dayjs().format('L LT');
 console.log(savBtn);
 console.log(textArea);
 
@@ -13,17 +14,17 @@ savBtn.on('click',function saveBtnHandler() {
   var timeBlock= $(this).closest('.time-block');
   // var userInput= timeBlock.find('.description');
   var whatHour= timeBlock.attr('id');
-  var text = $(('textArea').html);
-  var data= {
+  var text = textArea.val();
+  var data = {
     hourId: whatHour,
     text : text,};
-    var dataString = JSON.stringify(data,text);
-    console.log(dataString);
+    
+    console.log(data);
     console.log(text);
 
 
   
-  localStorage.setItem(whatHour + "text",dataString);
+  localStorage.setItem("hourID",JSON.stringify(data));
 });
   
   // TODO: Add a listener for click events on the save button. This code should
@@ -32,7 +33,17 @@ savBtn.on('click',function saveBtnHandler() {
   // function? How can DOM traversal be used to get the "hour-x" id of the
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
-  //
+
+  var localizedFormat = require('dayjs/plugin/localizedFormat')
+dayjs.extend(localizedFormat);
+ 
+var time = dayjs('2023-04-06').format();
+$()
+
+  if(today>hour) {
+    textArea.find('.present').text('past');
+
+  }
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
   // attribute of each time-block be used to conditionally add or remove the
